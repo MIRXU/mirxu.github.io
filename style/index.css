@@ -2068,6 +2068,28 @@ ol.linenums {
   width: 50%;
   margin: 5px 0;
 }
+.archive_lists .category-list{
+  display: flex;
+  flex-wrap: wrap;
+ 
+}
+.archive_lists .category-list li{
+  padding-right: 15px;
+}
+.tag-list{
+  display: flex;
+  justify-content: center;
+}
+.tag-list li{
+  padding-right: 15px;
+}
+.archive_lists{
+  display: flex;
+  justify-content: center;
+}
+
+
+
 .page_article_item {
   display: flex;
   height: 18em;

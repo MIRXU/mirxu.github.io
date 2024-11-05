@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>mobx的介绍和使用</title>
-    <url>/2024/10/31/2024103102/</url>
-    <content><![CDATA[<h2 id="什么是mobox"><a href="#什么是mobox" class="headerlink" title="什么是mobox"></a>什么是mobox</h2><p>是一个用来管理状态的库，如果被观测组件发生改变，会自动渲染有关页面,告别setState;<br>mbox编程的3个重点：<br>    1.observer观测器：带有观测器的react组件或者属性被mobx实时观测<br>    2.observable可观测对象：由mobx建立的可观测对象<br>    3.action更新事件：标识观测对象的改变事件</p>
-<h2 id="mobox的安装和使用"><a href="#mobox的安装和使用" class="headerlink" title="mobox的安装和使用"></a>mobox的安装和使用</h2><p>1.安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install mobx,mobx-react-lite --save</span><br><span class="line">根目录新建store文件并在store中新建index.js和test.Store.js</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// test.Store.js module</span><br><span class="line">    import &#123; makeAutoObservable &#125; from <span class="string">&#x27;mobx&#x27;</span></span><br><span class="line">    </span><br><span class="line">    class TestStore &#123;</span><br><span class="line">    </span><br><span class="line">      userInfo = &#123;&#125;</span><br><span class="line">      <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">        // 响应式</span><br><span class="line">        makeAutoObservable(this)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="title">setUser</span></span>()&#123;</span><br><span class="line">          this.userInfo =&#123;name:<span class="string">&quot;张三&quot;</span>&#125;</span><br><span class="line">      &#125;</span><br><span class="line">      get <span class="function"><span class="title">getUser</span></span>()&#123;</span><br><span class="line">          <span class="built_in">return</span> this.userInfo </span><br><span class="line">      &#125;</span><br><span class="line">     </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">export</span> default TestStore </span><br><span class="line">//index.js</span><br><span class="line">    // 把所有的模块做统一处理</span><br><span class="line">    // 导出一个统一的方法 useStore</span><br><span class="line">    import React from <span class="string">&quot;react&quot;</span></span><br><span class="line">    import TestStore from <span class="string">&quot;./test.Store&quot;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    import &#123; configure &#125; from <span class="string">&quot;mobx&quot;</span></span><br><span class="line">    configure(&#123;</span><br><span class="line">      enforceActions: <span class="string">&quot;never&quot;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    class RootStore &#123;</span><br><span class="line">      <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">        this.testStore = new TestStore ()</span><br><span class="line">    </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//下面的代码都是固定的，换一个平台代码也不会</span><br><span class="line"></span><br><span class="line">// 实例化根</span><br><span class="line">// 导出useStore context</span><br><span class="line">const rootStore = new RootStore()</span><br><span class="line">const context = React.createContext(rootStore)</span><br><span class="line"></span><br><span class="line">const useStore = () =&gt; React.useContext(context)</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> &#123; useStore &#125;</span><br></pre></td></tr></table></figure>
-<p>2.使用</p>
-<p>在使用的模块导出store</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import &#123; useStore  &#125; from <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line">    import &#123; observer &#125; from <span class="string">&#x27;mobx-react-lite&#x27;</span></span><br><span class="line">    const App=()=&gt;&#123;</span><br><span class="line">        const &#123;  testStore &#125; = useStore()</span><br><span class="line">        //使用<span class="built_in">test</span>里面的方法</span><br><span class="line">        loginStore.getUser()</span><br><span class="line">    &#125;</span><br><span class="line">    //重点：需要使用observer包装起来才可以</span><br><span class="line">    <span class="built_in">export</span> default observer(App)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>mobx</tag>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>pinia的安装和使用</title>
     <url>/2024/10/31/2024103101/</url>
     <content><![CDATA[<h2 id="1-什么是-pinia"><a href="#1-什么是-pinia" class="headerlink" title="1.什么是 pinia?"></a>1.什么是 pinia?</h2><p>pinia是一个类似于vuex的状态管理工具</p>
@@ -66,16 +47,22 @@
       </tags>
   </entry>
   <entry>
-    <title>dockerfile的说明</title>
-    <url>/2024/11/01/2024110102/</url>
-    <content><![CDATA[<p>docker用的好，dockerfile配置少不了，配置好dockerfile才能打包一个正确的镜像以供使用。</p>
-<p>#第一行配置镜像的依赖，比如这个镜像是使用go语言开发，选择开发版本，as build是一个文件名称，后面有用到</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM golang:1.18.3 as build</span><br><span class="line"></span><br><span class="line"><span class="comment">#WORKDIR关键字 设置工作路径</span></span><br><span class="line">WORKDIR /build</span><br><span class="line"></span><br><span class="line"><span class="comment">#把项目所有文件复制到镜像的根目录文件夹中</span></span><br><span class="line">ADD . ./</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置Go语言的环境变量，打开Go Module模式。设置包下载源，有利于快速下载包</span></span><br><span class="line">ENV GO111MODULE=on \</span><br><span class="line">GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载go.mod里面的包</span></span><br><span class="line">RUN go mod download</span><br><span class="line"></span><br><span class="line"><span class="comment">#编译</span></span><br><span class="line">RUN go build -o gin_docker .</span><br><span class="line"></span><br><span class="line"><span class="comment">#打开端口</span></span><br><span class="line">EXPOSE 8000</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行项目</span></span><br><span class="line">ENTRYPOINT  [<span class="string">&quot;./gin_docker&quot;</span>]</span><br></pre></td></tr></table></figure>]]></content>
+    <title>mobx的介绍和使用</title>
+    <url>/2024/10/31/2024103102/</url>
+    <content><![CDATA[<h2 id="什么是mobox"><a href="#什么是mobox" class="headerlink" title="什么是mobox"></a>什么是mobox</h2><p>是一个用来管理状态的库，如果被观测组件发生改变，会自动渲染有关页面,告别setState;<br>mbox编程的3个重点：<br>    1.observer观测器：带有观测器的react组件或者属性被mobx实时观测<br>    2.observable可观测对象：由mobx建立的可观测对象<br>    3.action更新事件：标识观测对象的改变事件</p>
+<h2 id="mobox的安装和使用"><a href="#mobox的安装和使用" class="headerlink" title="mobox的安装和使用"></a>mobox的安装和使用</h2><p>1.安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install mobx,mobx-react-lite --save</span><br><span class="line">根目录新建store文件并在store中新建index.js和test.Store.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// test.Store.js module</span><br><span class="line">    import &#123; makeAutoObservable &#125; from <span class="string">&#x27;mobx&#x27;</span></span><br><span class="line">    </span><br><span class="line">    class TestStore &#123;</span><br><span class="line">    </span><br><span class="line">      userInfo = &#123;&#125;</span><br><span class="line">      <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">        // 响应式</span><br><span class="line">        makeAutoObservable(this)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="title">setUser</span></span>()&#123;</span><br><span class="line">          this.userInfo =&#123;name:<span class="string">&quot;张三&quot;</span>&#125;</span><br><span class="line">      &#125;</span><br><span class="line">      get <span class="function"><span class="title">getUser</span></span>()&#123;</span><br><span class="line">          <span class="built_in">return</span> this.userInfo </span><br><span class="line">      &#125;</span><br><span class="line">     </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">export</span> default TestStore </span><br><span class="line">//index.js</span><br><span class="line">    // 把所有的模块做统一处理</span><br><span class="line">    // 导出一个统一的方法 useStore</span><br><span class="line">    import React from <span class="string">&quot;react&quot;</span></span><br><span class="line">    import TestStore from <span class="string">&quot;./test.Store&quot;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    import &#123; configure &#125; from <span class="string">&quot;mobx&quot;</span></span><br><span class="line">    configure(&#123;</span><br><span class="line">      enforceActions: <span class="string">&quot;never&quot;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    class RootStore &#123;</span><br><span class="line">      <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">        this.testStore = new TestStore ()</span><br><span class="line">    </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//下面的代码都是固定的，换一个平台代码也不会</span><br><span class="line"></span><br><span class="line">// 实例化根</span><br><span class="line">// 导出useStore context</span><br><span class="line">const rootStore = new RootStore()</span><br><span class="line">const context = React.createContext(rootStore)</span><br><span class="line"></span><br><span class="line">const useStore = () =&gt; React.useContext(context)</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> &#123; useStore &#125;</span><br></pre></td></tr></table></figure>
+<p>2.使用</p>
+<p>在使用的模块导出store</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import &#123; useStore  &#125; from <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line">    import &#123; observer &#125; from <span class="string">&#x27;mobx-react-lite&#x27;</span></span><br><span class="line">    const App=()=&gt;&#123;</span><br><span class="line">        const &#123;  testStore &#125; = useStore()</span><br><span class="line">        //使用<span class="built_in">test</span>里面的方法</span><br><span class="line">        loginStore.getUser()</span><br><span class="line">    &#125;</span><br><span class="line">    //重点：需要使用observer包装起来才可以</span><br><span class="line">    <span class="built_in">export</span> default observer(App)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Docker</category>
+        <category>vue</category>
       </categories>
       <tags>
-        <tag>服务端</tag>
+        <tag>前端</tag>
+        <tag>mobx</tag>
       </tags>
   </entry>
   <entry>
@@ -99,33 +86,16 @@
       </tags>
   </entry>
   <entry>
-    <title>浏览器跨域消息传递</title>
-    <url>/2024/11/01/2024110104/</url>
-    <content><![CDATA[<h2 id="父页面给子页面传值"><a href="#父页面给子页面传值" class="headerlink" title="父页面给子页面传值"></a>父页面给子页面传值</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> iframe = <span class="variable language_">document</span>.<span class="title function_">getElementId</span>(<span class="string">&#x27;iframe&#x27;</span>)<span class="comment">//iframe容器</span></span><br><span class="line">iframe.<span class="property">contentWindow</span>.<span class="title function_">postMessage</span>(&#123;<span class="attr">msg</span>: <span class="string">&#x27;来自父页面的消息&#x27;</span>&#125;, <span class="string">&quot;*&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="子页面接收消息"><a href="#子页面接收消息" class="headerlink" title="子页面接收消息"></a>子页面接收消息</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  <span class="variable language_">window</span>.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">data</span>.<span class="property">msg</span>) <span class="comment">// 来自父页面的消息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="子页面给父页面传递消息"><a href="#子页面给父页面传递消息" class="headerlink" title="子页面给父页面传递消息"></a>子页面给父页面传递消息</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="title function_">postMessage</span>(&#123;<span class="attr">msg</span>: <span class="string">&#x27;来自子页面值&#x27;</span>&#125;, <span class="string">&quot;*&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="父页面接收消息"><a href="#父页面接收消息" class="headerlink" title="父页面接收消息"></a>父页面接收消息</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">data</span>.<span class="property">msg</span>) <span class="comment">// 来自子页面值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>dockerfile的说明</title>
+    <url>/2024/11/01/2024110102/</url>
+    <content><![CDATA[<p>docker用的好，dockerfile配置少不了，配置好dockerfile才能打包一个正确的镜像以供使用。</p>
+<p>#第一行配置镜像的依赖，比如这个镜像是使用go语言开发，选择开发版本，as build是一个文件名称，后面有用到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM golang:1.18.3 as build</span><br><span class="line"></span><br><span class="line"><span class="comment">#WORKDIR关键字 设置工作路径</span></span><br><span class="line">WORKDIR /build</span><br><span class="line"></span><br><span class="line"><span class="comment">#把项目所有文件复制到镜像的根目录文件夹中</span></span><br><span class="line">ADD . ./</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置Go语言的环境变量，打开Go Module模式。设置包下载源，有利于快速下载包</span></span><br><span class="line">ENV GO111MODULE=on \</span><br><span class="line">GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载go.mod里面的包</span></span><br><span class="line">RUN go mod download</span><br><span class="line"></span><br><span class="line"><span class="comment">#编译</span></span><br><span class="line">RUN go build -o gin_docker .</span><br><span class="line"></span><br><span class="line"><span class="comment">#打开端口</span></span><br><span class="line">EXPOSE 8000</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行项目</span></span><br><span class="line">ENTRYPOINT  [<span class="string">&quot;./gin_docker&quot;</span>]</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>javascript</category>
+        <category>Docker</category>
       </categories>
       <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在npm中发布自己开发的插件</title>
-    <url>/2024/11/01/2024110105/</url>
-    <content><![CDATA[<h2 id="注册npm账号，打开-https-www-npmjs-com-signup-进行注册"><a href="#注册npm账号，打开-https-www-npmjs-com-signup-进行注册" class="headerlink" title="注册npm账号，打开 https://www.npmjs.com/signup 进行注册"></a>注册npm账号，打开 <a href="https://www.npmjs.com/signup">https://www.npmjs.com/signup</a> 进行注册</h2><h2 id="初始化需要上传的包，新建一个文件夹，运行"><a href="#初始化需要上传的包，新建一个文件夹，运行" class="headerlink" title="初始化需要上传的包，新建一个文件夹，运行"></a>初始化需要上传的包，新建一个文件夹，运行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
-<p>根据提示会在文件夹中生成一个package.json文件，内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   </span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;xyj-3d&quot;</span>, <span class="comment">#包名</span></span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.3&quot;</span>,#版本号</span><br><span class="line">  <span class="string">&quot;description&quot;</span>: <span class="string">&quot;cesium-plus&quot;</span>,#信息 </span><br><span class="line">  <span class="string">&quot;main&quot;</span>: <span class="string">&quot;xyj.min.js&quot;</span>,#入口文件</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;author&quot;</span>: <span class="string">&quot;xyj&quot;</span>,#作者</span><br><span class="line">  <span class="string">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>确保npm是npm源，不是其他源，安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line"></span><br><span class="line">//查看本地所有镜像，带 * 的是当前使用的镜像</span><br><span class="line">nrm <span class="built_in">ls</span></span><br><span class="line">//添加一个自己的源</span><br><span class="line">nrm add xxx http://xxxnpm.cn/</span><br><span class="line"></span><br><span class="line">//使用指定源</span><br><span class="line">nrm use xxx</span><br><span class="line">//删除指定源</span><br><span class="line">nrm del xxx</span><br><span class="line">使用</span><br><span class="line"></span><br><span class="line">npm login</span><br><span class="line">输入用户名和密码登录，注意，每次登录都需要一个动态验证码。登录成功后执行</span><br><span class="line"></span><br><span class="line">npm publish </span><br><span class="line">即可发布成功，现在可以去npm上搜索你的插件了。使用的时候和其他插件一样。</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Node</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
+        <tag>服务端</tag>
       </tags>
   </entry>
   <entry>
@@ -149,6 +119,50 @@
       </tags>
   </entry>
   <entry>
+    <title>浏览器跨域消息传递</title>
+    <url>/2024/11/01/2024110104/</url>
+    <content><![CDATA[<h2 id="父页面给子页面传值"><a href="#父页面给子页面传值" class="headerlink" title="父页面给子页面传值"></a>父页面给子页面传值</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> iframe = <span class="variable language_">document</span>.<span class="title function_">getElementId</span>(<span class="string">&#x27;iframe&#x27;</span>)<span class="comment">//iframe容器</span></span><br><span class="line">iframe.<span class="property">contentWindow</span>.<span class="title function_">postMessage</span>(&#123;<span class="attr">msg</span>: <span class="string">&#x27;来自父页面的消息&#x27;</span>&#125;, <span class="string">&quot;*&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="子页面接收消息"><a href="#子页面接收消息" class="headerlink" title="子页面接收消息"></a>子页面接收消息</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">  <span class="variable language_">window</span>.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">data</span>.<span class="property">msg</span>) <span class="comment">// 来自父页面的消息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="子页面给父页面传递消息"><a href="#子页面给父页面传递消息" class="headerlink" title="子页面给父页面传递消息"></a>子页面给父页面传递消息</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="title function_">postMessage</span>(&#123;<span class="attr">msg</span>: <span class="string">&#x27;来自子页面值&#x27;</span>&#125;, <span class="string">&quot;*&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="父页面接收消息"><a href="#父页面接收消息" class="headerlink" title="父页面接收消息"></a>父页面接收消息</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">data</span>.<span class="property">msg</span>) <span class="comment">// 来自子页面值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker run的命令讲解</title>
+    <url>/2024/11/01/2024110108/</url>
+    <content><![CDATA[<p>当我们运行一个docker run 的时候，里面有许多命令，如果需要加卷来映射本地路径需要怎么做，下面图解一条相对完整的docker命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name webl -p 80:80 -v /usr/share/nginx/html nginx</span><br></pre></td></tr></table></figure>
+<p>&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html下产生新的目录html 运行的端口为80</p>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>服务端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在npm中发布自己开发的插件</title>
+    <url>/2024/11/01/2024110105/</url>
+    <content><![CDATA[<h2 id="注册npm账号，打开-https-www-npmjs-com-signup-进行注册"><a href="#注册npm账号，打开-https-www-npmjs-com-signup-进行注册" class="headerlink" title="注册npm账号，打开 https://www.npmjs.com/signup 进行注册"></a>注册npm账号，打开 <a href="https://www.npmjs.com/signup">https://www.npmjs.com/signup</a> 进行注册</h2><h2 id="初始化需要上传的包，新建一个文件夹，运行"><a href="#初始化需要上传的包，新建一个文件夹，运行" class="headerlink" title="初始化需要上传的包，新建一个文件夹，运行"></a>初始化需要上传的包，新建一个文件夹，运行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>根据提示会在文件夹中生成一个package.json文件，内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   </span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;xyj-3d&quot;</span>, <span class="comment">#包名</span></span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.3&quot;</span>,#版本号</span><br><span class="line">  <span class="string">&quot;description&quot;</span>: <span class="string">&quot;cesium-plus&quot;</span>,#信息 </span><br><span class="line">  <span class="string">&quot;main&quot;</span>: <span class="string">&quot;xyj.min.js&quot;</span>,#入口文件</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;author&quot;</span>: <span class="string">&quot;xyj&quot;</span>,#作者</span><br><span class="line">  <span class="string">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>确保npm是npm源，不是其他源，安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line"></span><br><span class="line">//查看本地所有镜像，带 * 的是当前使用的镜像</span><br><span class="line">nrm <span class="built_in">ls</span></span><br><span class="line">//添加一个自己的源</span><br><span class="line">nrm add xxx http://xxxnpm.cn/</span><br><span class="line"></span><br><span class="line">//使用指定源</span><br><span class="line">nrm use xxx</span><br><span class="line">//删除指定源</span><br><span class="line">nrm del xxx</span><br><span class="line">使用</span><br><span class="line"></span><br><span class="line">npm login</span><br><span class="line">输入用户名和密码登录，注意，每次登录都需要一个动态验证码。登录成功后执行</span><br><span class="line"></span><br><span class="line">npm publish </span><br><span class="line">即可发布成功，现在可以去npm上搜索你的插件了。使用的时候和其他插件一样。</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Node</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>反向ssh</title>
     <url>/2024/11/01/2024110109/</url>
     <content><![CDATA[<h2 id="什么是ssh？"><a href="#什么是ssh？" class="headerlink" title="什么是ssh？"></a>什么是ssh？</h2><p>SSH 为 Secure Shell 的缩写，SSH 为建立在应用层基础上的安全协议。SSH 是较可靠，专为远程登录会话和其他网络服务提供安全性的协议。</p>
@@ -162,7 +176,7 @@
 <h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ol>
 <li><p>使用ps -ef | grep sshd 确定主机A，和主机B都运行了sshd。如果没有运行sshd，则需要执行sudo apt-get install openssh-server 安装openssh-server</p>
 </li>
-<li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#114;&#111;&#111;&#116;&#x40;&#x31;&#56;&#50;&#46;&#50;&#53;&#x34;&#x2e;&#x31;&#x33;&#x35;&#x2e;&#x32;&#x33;&#57;">&#114;&#111;&#111;&#116;&#x40;&#x31;&#56;&#50;&#46;&#50;&#53;&#x34;&#x2e;&#x31;&#x33;&#x35;&#x2e;&#x32;&#x33;&#57;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p>
+<li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#x31;&#56;&#50;&#46;&#x32;&#53;&#52;&#x2e;&#x31;&#51;&#x35;&#46;&#50;&#51;&#x39;">&#x72;&#111;&#111;&#116;&#64;&#x31;&#56;&#50;&#46;&#x32;&#53;&#52;&#x2e;&#x31;&#51;&#x35;&#46;&#50;&#51;&#x39;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p>
 </li>
 <li><p>主机B（服务器）执行命令远程登录主机A：ssh test@localhost -p 11111,其中test为主机A的用户，然后输入主机A test主机的用户名 的密码，即可ssh登录到主机A。</p>
 </li>
@@ -241,33 +255,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker run的命令讲解</title>
-    <url>/2024/11/01/2024110108/</url>
-    <content><![CDATA[<p>当我们运行一个docker run 的时候，里面有许多命令，如果需要加卷来映射本地路径需要怎么做，下面图解一条相对完整的docker命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name webl -p 80:80 -v /usr/share/nginx/html nginx</span><br></pre></td></tr></table></figure>
-<p>&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html下产生新的目录html 运行的端口为80</p>
-]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>服务端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何实现软路由功能</title>
-    <url>/2024/11/01/2024110110/</url>
-    <content><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to set up network sharing with static IP</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define network interfaces and IP addresses</span></span><br><span class="line"></span><br><span class="line">LAN_INTERFACE=<span class="string">&quot;eth0&quot;</span></span><br><span class="line"></span><br><span class="line">WIFI_INTERFACE=<span class="string">&quot;wlan0&quot;</span></span><br><span class="line"></span><br><span class="line">LAN_IP=<span class="string">&quot;192.168.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">DHCP_RANGE=<span class="string">&quot;192.168.0.10,192.168.0.50,12h&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable IP forwarding</span></span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.ip_forward=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set up iptables rules</span></span><br><span class="line"></span><br><span class="line">iptables -A POSTROUTING -t nat -o <span class="variable">$WIFI_INTERFACE</span> -j MASQUERADE</span><br><span class="line"></span><br><span class="line">iptables -A FORWARD -i <span class="variable">$WIFI_INTERFACE</span> -o <span class="variable">$LAN_INTERFACE</span> -m state --state RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A FORWARD -i <span class="variable">$LAN_INTERFACE</span> -o <span class="variable">$WIFI_INTERFACE</span> -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Start dnsmasq</span></span><br><span class="line"></span><br><span class="line">service dnsmasq start</span><br><span class="line"></span><br><span class="line">service dnsmasq restart</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Save iptables rules</span></span><br><span class="line"></span><br><span class="line">iptables-save | <span class="built_in">tee</span> /etc/iptables.rules</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure static IP for LAN interface</span></span><br><span class="line"></span><br><span class="line">ifconfig <span class="variable">$LAN_INTERFACE</span> <span class="variable">$LAN_IP</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;interface <span class="variable">$LAN_INTERFACE</span>&quot;</span> &gt;&gt; /etc/dnsmasq.conf</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;dhcp-range=<span class="variable">$LAN_IP</span>,<span class="variable">$DHCP_RANGE</span>&quot;</span> &gt;&gt; /etc/dnsmasq.conf</span><br></pre></td></tr></table></figure>
-<p>注意端口占用，需要kill</p>
-]]></content>
-      <categories>
-        <category>ssh</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>nginx配置https访问</title>
     <url>/2024/10/30/hello-world/</url>
     <content><![CDATA[<p>https证书怎么获取，教程很多，就不在这里说了，主要记录一下如何开启nginx的https服务，以及配置http转发https.</p>
@@ -289,6 +276,19 @@
       </categories>
       <tags>
         <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何实现软路由功能</title>
+    <url>/2024/11/01/2024110110/</url>
+    <content><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to set up network sharing with static IP</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define network interfaces and IP addresses</span></span><br><span class="line"></span><br><span class="line">LAN_INTERFACE=<span class="string">&quot;eth0&quot;</span></span><br><span class="line"></span><br><span class="line">WIFI_INTERFACE=<span class="string">&quot;wlan0&quot;</span></span><br><span class="line"></span><br><span class="line">LAN_IP=<span class="string">&quot;192.168.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">DHCP_RANGE=<span class="string">&quot;192.168.0.10,192.168.0.50,12h&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable IP forwarding</span></span><br><span class="line"></span><br><span class="line">sysctl net.ipv4.ip_forward=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set up iptables rules</span></span><br><span class="line"></span><br><span class="line">iptables -A POSTROUTING -t nat -o <span class="variable">$WIFI_INTERFACE</span> -j MASQUERADE</span><br><span class="line"></span><br><span class="line">iptables -A FORWARD -i <span class="variable">$WIFI_INTERFACE</span> -o <span class="variable">$LAN_INTERFACE</span> -m state --state RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line">iptables -A FORWARD -i <span class="variable">$LAN_INTERFACE</span> -o <span class="variable">$WIFI_INTERFACE</span> -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Start dnsmasq</span></span><br><span class="line"></span><br><span class="line">service dnsmasq start</span><br><span class="line"></span><br><span class="line">service dnsmasq restart</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Save iptables rules</span></span><br><span class="line"></span><br><span class="line">iptables-save | <span class="built_in">tee</span> /etc/iptables.rules</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure static IP for LAN interface</span></span><br><span class="line"></span><br><span class="line">ifconfig <span class="variable">$LAN_INTERFACE</span> <span class="variable">$LAN_IP</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;interface <span class="variable">$LAN_INTERFACE</span>&quot;</span> &gt;&gt; /etc/dnsmasq.conf</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;dhcp-range=<span class="variable">$LAN_IP</span>,<span class="variable">$DHCP_RANGE</span>&quot;</span> &gt;&gt; /etc/dnsmasq.conf</span><br></pre></td></tr></table></figure>
+<p>注意端口占用，需要kill</p>
+]]></content>
+      <categories>
+        <category>ssh</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
 </search>
