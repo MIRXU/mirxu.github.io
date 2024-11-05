@@ -9,19 +9,29 @@
 <h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ol>
 <li><p>使用ps -ef | grep sshd 确定主机A，和主机B都运行了sshd。如果没有运行sshd，则需要执行sudo apt-get install openssh-server 安装openssh-server</p>
 </li>
-<li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#x40;&#49;&#x38;&#x32;&#46;&#50;&#53;&#52;&#46;&#49;&#51;&#x35;&#x2e;&#x32;&#51;&#57;">&#x72;&#x6f;&#x6f;&#x74;&#x40;&#49;&#x38;&#x32;&#46;&#50;&#53;&#52;&#46;&#49;&#51;&#x35;&#x2e;&#x32;&#51;&#57;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p>
+<li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#64;&#x31;&#x38;&#x32;&#x2e;&#50;&#x35;&#52;&#46;&#49;&#51;&#x35;&#46;&#x32;&#x33;&#57;">&#x72;&#111;&#x6f;&#x74;&#64;&#x31;&#x38;&#x32;&#x2e;&#50;&#x35;&#52;&#46;&#49;&#51;&#x35;&#46;&#x32;&#x33;&#57;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p>
 </li>
 <li><p>主机B（服务器）执行命令远程登录主机A：ssh test@localhost -p 11111,其中test为主机A的用户，然后输入主机A test主机的用户名 的密码，即可ssh登录到主机A。</p>
 </li>
 </ol>
-</div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/linux/">linux</a></div></article><div class="article-copyright"><p>标题: <a href="/2024/11/01/2024110109/">反向ssh</a></p><p> 链接: <a href="/2024/11/01/2024110109/">http://abc.xz.cn/2024/11/01/2024110109/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/11/01/2024110108/"
-  style="background-image:url(/assets/images/random/32.jpg)">
+</div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/linux/">linux</a></div><div id="gitalk-container"></div><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+  clientID: "Ov23lizBcLIfM9YxF5Fq",
+  clientSecret: "388408a804fc74a9025f13d7e10cffe725fc019a",
+  repo: "xxblog",
+  owner: "MIRXU",
+  admin:" MIRXU",
+  id: location.pathname,
+  language: "zh-CN"
+})
+gitalk.render('gitalk-container')
+</script></article><div class="article-copyright"><p>标题: <a href="/2024/11/01/2024110109/">反向ssh</a></p><p> 链接: <a href="/2024/11/01/2024110109/">http://abc.xz.cn/2024/11/01/2024110109/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/11/01/2024110108/"
+  style="background-image:url(/assets/images/random/33.jpg)">
   <div class="inner"><span>上一篇:</span>
     <p>docker run的命令讲解</p>
   </div>
 </a>
 <a class="page_down" href="/2024/11/01/2024110110/"
-style="background-image:url(/assets/images/random/6.jpg)">
+style="background-image:url(/assets/images/random/23.jpg)">
 <div class="inner"><span>下一篇:</span>
   <p>如何实现软路由功能</p>
 </div>

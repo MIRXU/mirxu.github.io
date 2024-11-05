@@ -7,14 +7,24 @@
 <p>图片压缩的代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">chainWebpack</span>: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">         <span class="comment">/* 压缩图片 */</span></span><br><span class="line">        config.<span class="property">module</span></span><br><span class="line">            .<span class="title function_">rule</span>(<span class="string">&#x27;images&#x27;</span>)</span><br><span class="line">            .<span class="title function_">use</span>(<span class="string">&#x27;image-webpack-loader&#x27;</span>)</span><br><span class="line">            .<span class="title function_">loader</span>(<span class="string">&#x27;image-webpack-loader&#x27;</span>)</span><br><span class="line">            .<span class="title function_">options</span>(&#123; <span class="attr">bypassOnDebug</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">            .<span class="title function_">end</span>()</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>需要导入的插件如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install image-webpack-loader --save-dev</span><br></pre></td></tr></table></figure></div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div></article><div class="article-copyright"><p>标题: <a href="/2024/11/01/2024110103/">vue打包后出现文件过大加载速度过慢问题解决方案</a></p><p> 链接: <a href="/2024/11/01/2024110103/">http://abc.xz.cn/2024/11/01/2024110103/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/11/01/2024110102/"
-  style="background-image:url(/assets/images/random/24.jpg)">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install image-webpack-loader --save-dev</span><br></pre></td></tr></table></figure></div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div id="gitalk-container"></div><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+  clientID: "Ov23lizBcLIfM9YxF5Fq",
+  clientSecret: "388408a804fc74a9025f13d7e10cffe725fc019a",
+  repo: "xxblog",
+  owner: "MIRXU",
+  admin:" MIRXU",
+  id: location.pathname,
+  language: "zh-CN"
+})
+gitalk.render('gitalk-container')
+</script></article><div class="article-copyright"><p>标题: <a href="/2024/11/01/2024110103/">vue打包后出现文件过大加载速度过慢问题解决方案</a></p><p> 链接: <a href="/2024/11/01/2024110103/">http://abc.xz.cn/2024/11/01/2024110103/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/11/01/2024110102/"
+  style="background-image:url(/assets/images/random/11.jpg)">
   <div class="inner"><span>上一篇:</span>
     <p>dockerfile的说明</p>
   </div>
 </a>
 <a class="page_down" href="/2024/11/01/2024110104/"
-style="background-image:url(/assets/images/random/21.jpg)">
+style="background-image:url(/assets/images/random/9.jpg)">
 <div class="inner"><span>下一篇:</span>
   <p>浏览器跨域消息传递</p>
 </div>

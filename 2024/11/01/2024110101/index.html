@@ -2,14 +2,24 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ImgConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line">    <span class="comment">//@Value可以将配置文件的内容自动注入到属性内</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;savePath.profilePhoto&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String profilePhotoPath;   <span class="comment">//图标物理存储路径</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;savePath.profilePhotoMapper&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String profilePhotoMapperPath;   <span class="comment">//图标映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span>&#123;</span><br><span class="line">        registry.addResourceHandler(profilePhotoMapperPath+<span class="string">&quot;**&quot;</span>).addResourceLocations(<span class="string">&quot;file:&quot;</span>+profilePhotoPath);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：前面的profilePhotoMapperPath是映射的路径，后面的profilePhotoPath真实路径，这个地方是容易写错的地方</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">savePath:</span><br><span class="line">    profilePhoto: <span class="string">&quot;F:/gis2.0updata/gisimg/&quot;</span>  #图标存储路径</span><br><span class="line">    profilePhotoMapper: <span class="string">&quot;/img/&quot;</span>  #图标的映射路径</span><br></pre></td></tr></table></figure>
-</div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/java/">java</a><a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a></div></article><div class="article-copyright"><p>标题: <a href="/2024/11/01/2024110101/">java配置图片访问映射</a></p><p> 链接: <a href="/2024/11/01/2024110101/">http://abc.xz.cn/2024/11/01/2024110101/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/10/31/2024103102/"
-  style="background-image:url(/assets/images/random/23.jpg)">
+</div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/java/">java</a><a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a></div><div id="gitalk-container"></div><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+  clientID: "Ov23lizBcLIfM9YxF5Fq",
+  clientSecret: "388408a804fc74a9025f13d7e10cffe725fc019a",
+  repo: "xxblog",
+  owner: "MIRXU",
+  admin:" MIRXU",
+  id: location.pathname,
+  language: "zh-CN"
+})
+gitalk.render('gitalk-container')
+</script></article><div class="article-copyright"><p>标题: <a href="/2024/11/01/2024110101/">java配置图片访问映射</a></p><p> 链接: <a href="/2024/11/01/2024110101/">http://abc.xz.cn/2024/11/01/2024110101/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/10/31/2024103102/"
+  style="background-image:url(/assets/images/random/12.jpg)">
   <div class="inner"><span>上一篇:</span>
     <p>mobx的介绍和使用</p>
   </div>
 </a>
 <a class="page_down" href="/2024/11/01/2024110102/"
-style="background-image:url(/assets/images/random/3.jpg)">
+style="background-image:url(/assets/images/random/16.jpg)">
 <div class="inner"><span>下一篇:</span>
   <p>dockerfile的说明</p>
 </div>

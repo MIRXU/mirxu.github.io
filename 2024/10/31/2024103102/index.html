@@ -5,14 +5,24 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//下面的代码都是固定的，换一个平台代码也不会</span><br><span class="line"></span><br><span class="line">// 实例化根</span><br><span class="line">// 导出useStore context</span><br><span class="line">const rootStore = new RootStore()</span><br><span class="line">const context = React.createContext(rootStore)</span><br><span class="line"></span><br><span class="line">const useStore = () =&gt; React.useContext(context)</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> &#123; useStore &#125;</span><br></pre></td></tr></table></figure>
 <p>2.使用</p>
 <p>在使用的模块导出store</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useStore  &#125; from <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line">    import &#123; observer &#125; from <span class="string">&#x27;mobx-react-lite&#x27;</span></span><br><span class="line">    const App=()=&gt;&#123;</span><br><span class="line">        const &#123;  testStore &#125; = useStore()</span><br><span class="line">        //使用<span class="built_in">test</span>里面的方法</span><br><span class="line">        loginStore.getUser()</span><br><span class="line">    &#125;</span><br><span class="line">    //重点：需要使用observer包装起来才可以</span><br><span class="line">    <span class="built_in">export</span> default observer(App)</span><br></pre></td></tr></table></figure></div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a href="/tags/mobx/">mobx</a></div></article><div class="article-copyright"><p>标题: <a href="/2024/10/31/2024103102/">mobx的介绍和使用</a></p><p> 链接: <a href="/2024/10/31/2024103102/">http://abc.xz.cn/2024/10/31/2024103102/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/10/31/2024103101/"
-  style="background-image:url(/assets/images/random/14.jpg)">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useStore  &#125; from <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line">    import &#123; observer &#125; from <span class="string">&#x27;mobx-react-lite&#x27;</span></span><br><span class="line">    const App=()=&gt;&#123;</span><br><span class="line">        const &#123;  testStore &#125; = useStore()</span><br><span class="line">        //使用<span class="built_in">test</span>里面的方法</span><br><span class="line">        loginStore.getUser()</span><br><span class="line">    &#125;</span><br><span class="line">    //重点：需要使用observer包装起来才可以</span><br><span class="line">    <span class="built_in">export</span> default observer(App)</span><br></pre></td></tr></table></figure></div><div class="article_tags"><span> <i class="yufont icon-tag"></i> 标签: </span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a href="/tags/mobx/">mobx</a></div><div id="gitalk-container"></div><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+  clientID: "Ov23lizBcLIfM9YxF5Fq",
+  clientSecret: "388408a804fc74a9025f13d7e10cffe725fc019a",
+  repo: "xxblog",
+  owner: "MIRXU",
+  admin:" MIRXU",
+  id: location.pathname,
+  language: "zh-CN"
+})
+gitalk.render('gitalk-container')
+</script></article><div class="article-copyright"><p>标题: <a href="/2024/10/31/2024103102/">mobx的介绍和使用</a></p><p> 链接: <a href="/2024/10/31/2024103102/">http://abc.xz.cn/2024/10/31/2024103102/</a></p><p> 版权声明: 若无特殊标注皆为 徐义杰 原创版权, 转载请以链接形式注明作者及原始出处</p><p>最后编辑时间: 2024-11-05</p></div><div class="page_turning"><a class="page_up" href="/2024/10/31/2024103101/"
+  style="background-image:url(/assets/images/random/11.jpg)">
   <div class="inner"><span>上一篇:</span>
     <p>pinia的安装和使用</p>
   </div>
 </a>
 <a class="page_down" href="/2024/11/01/2024110101/"
-style="background-image:url(/assets/images/random/3.jpg)">
+style="background-image:url(/assets/images/random/18.jpg)">
 <div class="inner"><span>下一篇:</span>
   <p>java配置图片访问映射</p>
 </div>
