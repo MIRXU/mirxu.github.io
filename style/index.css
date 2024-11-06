@@ -1310,6 +1310,13 @@ mobile_nav_box z-index 99
   color: #666;
   border: 1px solid #fff;
 }
+
+#vcomments{
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 6px;
+  padding: 10px;
+}
 .log_container {
   transition: all 0.3s;
   animation: fade-out 1s;
