@@ -33,7 +33,7 @@
       <link href="/2024/11/01/2024110109/"/>
       <url>/2024/11/01/2024110109/</url>
       
-        <content type="html"><![CDATA[<h2 id="什么是ssh？"><a href="#什么是ssh？" class="headerlink" title="什么是ssh？"></a>什么是ssh？</h2><p>SSH 为 Secure Shell 的缩写，SSH 为建立在应用层基础上的安全协议。SSH 是较可靠，专为远程登录会话和其他网络服务提供安全性的协议。</p><h2 id="什么是ssh反向连接？"><a href="#什么是ssh反向连接？" class="headerlink" title="什么是ssh反向连接？"></a>什么是ssh反向连接？</h2><p>反向连接是指主机A（受控端）主动连接主机B（控制端），在主机A和主机B之间建立一个远程连接，通过这个连接主机B可以主动的向主机A发送一些请求。</p><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ol><li><p>平时我们登录远程服务器，一般使用ssh登录远程服务器</p></li><li><p>现在我们想通过远程服务器反向操作登录本地PC，但由于一般本地PC没有公网IP，导致远程服务器使用正常ssh命令无法登录PC，这个时候就需要使用ssh反向连接功能。</p></li></ol><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ol><li><p>使用ps -ef | grep sshd 确定主机A，和主机B都运行了sshd。如果没有运行sshd，则需要执行sudo apt-get install openssh-server 安装openssh-server</p></li><li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#114;&#x6f;&#111;&#116;&#64;&#x31;&#x38;&#50;&#46;&#x32;&#53;&#x34;&#x2e;&#49;&#51;&#53;&#46;&#x32;&#x33;&#x39;">&#114;&#x6f;&#111;&#116;&#64;&#x31;&#x38;&#50;&#46;&#x32;&#53;&#x34;&#x2e;&#49;&#51;&#53;&#46;&#x32;&#x33;&#x39;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p></li><li><p>主机B（服务器）执行命令远程登录主机A：ssh test@localhost -p 11111,其中test为主机A的用户，然后输入主机A test主机的用户名 的密码，即可ssh登录到主机A。</p></li></ol>]]></content>
+        <content type="html"><![CDATA[<h2 id="什么是ssh？"><a href="#什么是ssh？" class="headerlink" title="什么是ssh？"></a>什么是ssh？</h2><p>SSH 为 Secure Shell 的缩写，SSH 为建立在应用层基础上的安全协议。SSH 是较可靠，专为远程登录会话和其他网络服务提供安全性的协议。</p><h2 id="什么是ssh反向连接？"><a href="#什么是ssh反向连接？" class="headerlink" title="什么是ssh反向连接？"></a>什么是ssh反向连接？</h2><p>反向连接是指主机A（受控端）主动连接主机B（控制端），在主机A和主机B之间建立一个远程连接，通过这个连接主机B可以主动的向主机A发送一些请求。</p><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ol><li><p>平时我们登录远程服务器，一般使用ssh登录远程服务器</p></li><li><p>现在我们想通过远程服务器反向操作登录本地PC，但由于一般本地PC没有公网IP，导致远程服务器使用正常ssh命令无法登录PC，这个时候就需要使用ssh反向连接功能。</p></li></ol><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ol><li><p>使用ps -ef | grep sshd 确定主机A，和主机B都运行了sshd。如果没有运行sshd，则需要执行sudo apt-get install openssh-server 安装openssh-server</p></li><li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#64;&#x31;&#56;&#50;&#x2e;&#x32;&#x35;&#x34;&#x2e;&#49;&#x33;&#53;&#46;&#50;&#x33;&#x39;">&#114;&#x6f;&#x6f;&#116;&#64;&#x31;&#56;&#50;&#x2e;&#x32;&#x35;&#x34;&#x2e;&#49;&#x33;&#53;&#46;&#50;&#x33;&#x39;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p></li><li><p>主机B（服务器）执行命令远程登录主机A：ssh test@localhost -p 11111,其中test为主机A的用户，然后输入主机A test主机的用户名 的密码，即可ssh登录到主机A。</p></li></ol>]]></content>
       
       
       <categories>
@@ -272,9 +272,9 @@
       
         <tags>
             
-            <tag> mobx </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> mobx </tag>
             
         </tags>
       
