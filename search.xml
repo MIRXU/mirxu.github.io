@@ -50,19 +50,6 @@
       </tags>
   </entry>
   <entry>
-    <title>dockerfile的说明</title>
-    <url>/2024/11/01/2024110102/</url>
-    <content><![CDATA[<p>docker用的好，dockerfile配置少不了，配置好dockerfile才能打包一个正确的镜像以供使用。</p>
-<p>#第一行配置镜像的依赖，比如这个镜像是使用go语言开发，选择开发版本，as build是一个文件名称，后面有用到</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM golang:1.18.3 as build</span><br><span class="line"></span><br><span class="line"><span class="comment">#WORKDIR关键字 设置工作路径</span></span><br><span class="line">WORKDIR /build</span><br><span class="line"></span><br><span class="line"><span class="comment">#把项目所有文件复制到镜像的根目录文件夹中</span></span><br><span class="line">ADD . ./</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置Go语言的环境变量，打开Go Module模式。设置包下载源，有利于快速下载包</span></span><br><span class="line">ENV GO111MODULE=on \</span><br><span class="line">GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载go.mod里面的包</span></span><br><span class="line">RUN go mod download</span><br><span class="line"></span><br><span class="line"><span class="comment">#编译</span></span><br><span class="line">RUN go build -o gin_docker .</span><br><span class="line"></span><br><span class="line"><span class="comment">#打开端口</span></span><br><span class="line">EXPOSE 8000</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行项目</span></span><br><span class="line">ENTRYPOINT  [<span class="string">&quot;./gin_docker&quot;</span>]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>服务端</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java配置图片访问映射</title>
     <url>/2024/11/01/2024110101/</url>
     <content><![CDATA[<p>建立配置文件，使用config注解，代码如下：</p>
@@ -96,6 +83,19 @@
       </categories>
       <tags>
         <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dockerfile的说明</title>
+    <url>/2024/11/01/2024110102/</url>
+    <content><![CDATA[<p>docker用的好，dockerfile配置少不了，配置好dockerfile才能打包一个正确的镜像以供使用。</p>
+<p>#第一行配置镜像的依赖，比如这个镜像是使用go语言开发，选择开发版本，as build是一个文件名称，后面有用到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM golang:1.18.3 as build</span><br><span class="line"></span><br><span class="line"><span class="comment">#WORKDIR关键字 设置工作路径</span></span><br><span class="line">WORKDIR /build</span><br><span class="line"></span><br><span class="line"><span class="comment">#把项目所有文件复制到镜像的根目录文件夹中</span></span><br><span class="line">ADD . ./</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置Go语言的环境变量，打开Go Module模式。设置包下载源，有利于快速下载包</span></span><br><span class="line">ENV GO111MODULE=on \</span><br><span class="line">GOPROXY=https://goproxy.cn</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载go.mod里面的包</span></span><br><span class="line">RUN go mod download</span><br><span class="line"></span><br><span class="line"><span class="comment">#编译</span></span><br><span class="line">RUN go build -o gin_docker .</span><br><span class="line"></span><br><span class="line"><span class="comment">#打开端口</span></span><br><span class="line">EXPOSE 8000</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行项目</span></span><br><span class="line">ENTRYPOINT  [<span class="string">&quot;./gin_docker&quot;</span>]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>服务端</tag>
       </tags>
   </entry>
   <entry>
@@ -241,7 +241,7 @@
 <h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ol>
 <li><p>使用ps -ef | grep sshd 确定主机A，和主机B都运行了sshd。如果没有运行sshd，则需要执行sudo apt-get install openssh-server 安装openssh-server</p>
 </li>
-<li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#x72;&#x6f;&#111;&#116;&#x40;&#49;&#56;&#50;&#x2e;&#x32;&#53;&#x34;&#x2e;&#x31;&#51;&#53;&#x2e;&#x32;&#51;&#57;">&#x72;&#x6f;&#111;&#116;&#x40;&#49;&#56;&#50;&#x2e;&#x32;&#53;&#x34;&#x2e;&#x31;&#51;&#53;&#x2e;&#x32;&#51;&#57;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p>
+<li><p>主机A执行命令与服务器建立连接：ssh -CqTfnN -R :11111:localhost:22 <a href="mailto:&#114;&#111;&#111;&#x74;&#64;&#49;&#56;&#x32;&#46;&#x32;&#x35;&#x34;&#46;&#x31;&#51;&#x35;&#46;&#x32;&#51;&#x39;">&#114;&#111;&#111;&#x74;&#64;&#49;&#56;&#x32;&#46;&#x32;&#x35;&#x34;&#46;&#x31;&#51;&#x35;&#46;&#x32;&#51;&#x39;</a>，其中182.254.135.239是服务器的地址，然后输入主机B的密码。</p>
 </li>
 <li><p>主机B（服务器）执行命令远程登录主机A：ssh test@localhost -p 11111,其中test为主机A的用户，然后输入主机A test主机的用户名 的密码，即可ssh登录到主机A。</p>
 </li>
