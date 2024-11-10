@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>nginx配置https访问 | 小徐的博客</title><meta name="author" content="徐义杰"><meta name="copyright" content="徐义杰"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="https证书怎么获取，教程很多，就不在这里说了，主要记录一下如何开启nginx的https服务，以及配置http转发https. 第一步，打开nginx配置文件nginx.conf.打开https服务1234567891011121314151617#server &#123;#    listen       443 ssl;#    server_name  localhost;#    s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx配置https访问">
+<meta property="og:url" content="http://abc.xz.cn/2024/11/09/hello-world/index.html">
+<meta property="og:site_name" content="小徐的博客">
+<meta property="og:description" content="https证书怎么获取，教程很多，就不在这里说了，主要记录一下如何开启nginx的https服务，以及配置http转发https. 第一步，打开nginx配置文件nginx.conf.打开https服务1234567891011121314151617#server &#123;#    listen       443 ssl;#    server_name  localhost;#    s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://abc.xz.cn/assets/images/random/13.jpg">
+<meta property="article:published_time" content="2024-11-09T01:58:18.000Z">
+<meta property="article:modified_time" content="2024-11-09T01:58:18.000Z">
+<meta property="article:author" content="徐义杰">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://abc.xz.cn/assets/images/random/13.jpg"><link rel="shortcut icon" href="/assets/imgs/favicon.ico"><link rel="canonical" href="http://abc.xz.cn/2024/11/09/hello-world/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'nginx配置https访问',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/cursor.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background: [object Object];"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="onerror=null;src='/assets/images/random/9.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-code"></i><span> 学习资源</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="http://cesium.xin/cesium/cn/Documentation1.95/"><i class="fa-fw fas fa-code"></i><span> 代码加密</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59119702/article/details/127702060"><i class="fa-fw fas fa-code"></i><span> SLD</span></a></li><li><a class="site-page child" href="/learning/"><i class="fa-fw fas fa-code"></i><span> 学习资料</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://www.soogif.com/video/?utmId=363"><i class="fa-fw fas fa-toolbox"></i><span> 视频砖TIF</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://frp.starryfrp.com/"><i class="fa-fw fas fa-toolbox"></i><span> StarryFrp</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/record-life/"><i class="fa-fw fas fa-archive"></i><span> 记录生活</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/assets/images/random/13.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">小徐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">nginx配置https访问</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-code"></i><span> 学习资源</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="http://cesium.xin/cesium/cn/Documentation1.95/"><i class="fa-fw fas fa-code"></i><span> 代码加密</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59119702/article/details/127702060"><i class="fa-fw fas fa-code"></i><span> SLD</span></a></li><li><a class="site-page child" href="/learning/"><i class="fa-fw fas fa-code"></i><span> 学习资料</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://www.soogif.com/video/?utmId=363"><i class="fa-fw fas fa-toolbox"></i><span> 视频砖TIF</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://frp.starryfrp.com/"><i class="fa-fw fas fa-toolbox"></i><span> StarryFrp</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/record-life/"><i class="fa-fw fas fa-archive"></i><span> 记录生活</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">nginx配置https访问</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-09T01:58:18.000Z" title="发表于 2024-11-09 09:58:18">2024-11-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-09T01:58:18.000Z" title="更新于 2024-11-09 09:58:18">2024-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/nginx/">nginx</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/nginx/https/">https</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>https证书怎么获取，教程很多，就不在这里说了，主要记录一下如何开启nginx的https服务，以及配置http转发https.</p>
+<h2 id="第一步，打开nginx配置文件nginx-conf-打开https服务"><a href="#第一步，打开nginx配置文件nginx-conf-打开https服务" class="headerlink" title="第一步，打开nginx配置文件nginx.conf.打开https服务"></a>第一步，打开nginx配置文件nginx.conf.打开https服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#server &#123;</span></span><br><span class="line"><span class="comment">#    listen       443 ssl;</span></span><br><span class="line"><span class="comment">#    server_name  localhost;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#    ssl_certificate      cert.pem;</span></span><br><span class="line"><span class="comment">#    ssl_certificate_key  cert.key;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#    ssl_session_cache    shared:SSL:1m;</span></span><br><span class="line"><span class="comment">#    ssl_session_timeout  5m;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#    ssl_ciphers  HIGH:!aNULL:!MD5;</span></span><br><span class="line"><span class="comment">#    ssl_prefer_server_ciphers  on;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#    location / &#123;</span></span><br><span class="line"><span class="comment">#        root   html;</span></span><br><span class="line"><span class="comment">#        index  index.html index.htm;</span></span><br><span class="line"><span class="comment">#    &#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="第二步，server（80下的server）加入以下配置"><a href="#第二步，server（80下的server）加入以下配置" class="headerlink" title="第二步，server（80下的server）加入以下配置"></a>第二步，server（80下的server）加入以下配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server_name  _;</span><br><span class="line"><span class="built_in">return</span> 301 https://$host<span class="variable">$request_uri</span>; </span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步-在443下的的server的location下加入如下配置"><a href="#第三步-在443下的的server的location下加入如下配置" class="headerlink" title="第三步,在443下的的server的location下加入如下配置"></a>第三步,在443下的的server的location下加入如下配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_pass   你的域名</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="注意，你的后台服务记得在443下面配置映射，如下："><a href="#注意，你的后台服务记得在443下面配置映射，如下：" class="headerlink" title="注意，你的后台服务记得在443下面配置映射，如下："></a>注意，你的后台服务记得在443下面配置映射，如下：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /api/ &#123;</span><br><span class="line"></span><br><span class="line">proxy_pass 你的后端访问路径;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后重启nginx就可以使用https访问了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://abc.xz.cn">徐义杰</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://abc.xz.cn/2024/11/09/hello-world/">http://abc.xz.cn/2024/11/09/hello-world/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://abc.xz.cn" target="_blank">小徐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/random/13.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/11/01/2024110110/" title="如何实现软路由功能"><img class="cover" src="/assets/images/random/12.jpg" onerror="onerror=null;src='/assets/images/random/9.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">如何实现软路由功能</div></div><div class="info-2"><div class="info-item-1">12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#!/bin/bash# Script to set up network sharing with static IP# Define network interfaces and IP addressesLAN_INTERFACE=&quot;eth0&quot;WIFI_INTERFACE=&quot;wlan0&quot;LAN_IP=&quot;192.168.0.1&quot;DHCP_RANGE=&quot;192.168.0.10,192.168.0.50,12h&quot;# Enable IP forwardingsysctl net.ipv4.ip_forward=1# Set up iptables rulesiptables -A POSTROUTING -t nat -o $WIFI_INTERFACE -j MASQUERADEiptables -A...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/10/31/2024103101/" title="pinia的安装和使用"><img class="cover" src="/assets/images/random/1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-31</div><div class="info-item-2">pinia的安装和使用</div></div><div class="info-2"><div class="info-item-1">1.什么是 pinia?pinia是一个类似于vuex的状态管理工具 2.inia和vuex的区别 pinia 最初是为了探索 Vuex 的下一次迭代会是什么样子 与 Vuex 相比，Pinia 提供了一个更简单的 API，具有更少的仪式，提供了 Composition-API 风格的 API； 最重要的是，在与 TypeScript 一起使用时具有可靠的类型推断支持；  3.安装和使用1.安装 123yarn add pinia# 或者使用 npmnpm install pinia 2.使用  在根目录新建store文件，store中新建index.js文件1234567891011121314151617181920// stores/counter.jsimport &#123; defineStore &#125; from &#x27;pinia&#x27;;export const useCounterStore = defineStore(&#x27;counter&#x27;, &#123;    state: () =&gt; &#123;       ...</div></div></div></a><a class="pagination-related" href="/2024/10/31/2024103102/" title="mobx的介绍和使用"><img class="cover" src="/assets/images/random/2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-31</div><div class="info-item-2">mobx的介绍和使用</div></div><div class="info-2"><div class="info-item-1">什么是mobox是一个用来管理状态的库，如果被观测组件发生改变，会自动渲染有关页面,告别setState;mbox编程的3个重点：    1.observer观测器：带有观测器的react组件或者属性被mobx实时观测    2.observable可观测对象：由mobx建立的可观测对象    3.action更新事件：标识观测对象的改变事件 mobox的安装和使用1.安装 12npm install mobx,mobx-react-lite --save根目录新建store文件并在store中新建index.js和test.Store.js 123456789101112131415161718192021222324252627282930313233343536373839// test.Store.js module    import &#123; makeAutoObservable &#125; from &#x27;mobx&#x27;        class TestStore &#123;          userInfo = &#123;&#125; ...</div></div></div></a><a class="pagination-related" href="/2024/11/01/2024110104/" title="浏览器跨域消息传递"><img class="cover" src="/assets/images/random/6.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-01</div><div class="info-item-2">浏览器跨域消息传递</div></div><div class="info-2"><div class="info-item-1">父页面给子页面传值12const iframe = document.getElementId(&#x27;iframe&#x27;)//iframe容器iframe.contentWindow.postMessage(&#123;msg: &#x27;来自父页面的消息&#x27;&#125;, &quot;*&quot;); 子页面接收消息123  window.onmessage = function(event)&#123;  console.log(event.data.msg) // 来自父页面的消息&#125; 子页面给父页面传递消息1window.parent.postMessage(&#123;msg: &#x27;来自子页面值&#x27;&#125;, &quot;*&quot;); 父页面接收消息123window.onmessage = function(event)&#123;    console.log(event.data.msg) // 来自子页面值&#125; </div></div></div></a><a class="pagination-related" href="/2024/11/01/2024110103/" title="vue打包后出现文件过大加载速度过慢问题解决方案"><img class="cover" src="/assets/images/random/5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-01</div><div class="info-item-2">vue打包后出现文件过大加载速度过慢问题解决方案</div></div><div class="info-2"><div class="info-item-1">我们在处理网站加载速度过慢问题是，首先想到的是cdn加速，还有一种解决方案，这种方案作用于nginx服务。 下面是我做网站配置的解决方案： 新建一个vue项目，打包之后发现会有一个文件特别大，特别是引入的插件越多，这个文件就越大，查阅资料发现这是我们的node_modules打包之后生成的文件。webpack配置可以将文件打包为.gz文件，传入nginx服务器之后，开启相关配置，他就会自动解压，这是这个文件就会成倍的减小。webpack的配置如下： 123456789101112131415//js html css配置configureWebpack: (config) =&gt; &#123;  /* gzip压缩 */  const productionGzipExtensions = [&#x27;html&#x27;, &#x27;js&#x27;, &#x27;css&#x27;]  config.plugins.push(      new CompressionWebpackPlugin(&#123;        filename:...</div></div></div></a><a class="pagination-related" href="/2024/11/01/2024110107/" title="css动画的属性及基础用法"><img class="cover" src="/assets/images/random/23.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-01</div><div class="info-item-2">css动画的属性及基础用法</div></div><div class="info-2"><div class="info-item-1">css3出现以后，css的动画就使用的特别广泛，下面是我在使用css3动画的一些理解。 css3动画的基础用法123456789@keyframes 动画名称&#123;  动画的操作属性&#125;使用动画的标签&#123;  animation-name:动画名称;/*需要执行的动画的名字*/  animation-duration: 3s;/*所需要的时间*/  animation-iteration-count: infinite;/* 执行次数*/ ...</div></div></div></a><a class="pagination-related" href="/2024/11/01/2024110106/" title="记一次rollup打包过程"><img class="cover" src="/assets/images/random/8.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-01</div><div class="info-item-2">记一次rollup打包过程</div></div><div class="info-2"><div class="info-item-1">安装roolup1yarn add -D rollup 安装其他插件1yarn add -D @rollup/plugin-commonjs rollup-plugin-terser rollup-plugin-typescript2 插件说明： 123@rollup/plugin-commonjs：让rollup知道项目用了那些依赖，打包的时候不要忘了rollup-plugin-terser：压缩代码rollup-plugin-typescript2：让rollup可以看懂TS代码 rollup配置文件新建rollup.config.js配置文件 12345678910111213141516171819202122232425// 导入依赖  const &#123; terser &#125; = require(&#x27;rollup-plugin-terser&#x27;)  const commonjs = require(&#x27;@rollup/plugin-commonjs&#x27;)  const typescript =...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="avatar"/></div><div class="author-info-name">徐义杰</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://mirxu.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是我的技术小站，用 Hexo 搭建。这里是 IT 知识的富集地，有编程语言、算法、系统、网络和安全等方面的内容，是 IT 爱好者和专业人士的好去处。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E6%89%93%E5%BC%80nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6nginx-conf-%E6%89%93%E5%BC%80https%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">第一步，打开nginx配置文件nginx.conf.打开https服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8Cserver%EF%BC%8880%E4%B8%8B%E7%9A%84server%EF%BC%89%E5%8A%A0%E5%85%A5%E4%BB%A5%E4%B8%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">第二步，server（80下的server）加入以下配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E5%9C%A8443%E4%B8%8B%E7%9A%84%E7%9A%84server%E7%9A%84location%E4%B8%8B%E5%8A%A0%E5%85%A5%E5%A6%82%E4%B8%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">第三步,在443下的的server的location下加入如下配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%8C%E4%BD%A0%E7%9A%84%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E8%AE%B0%E5%BE%97%E5%9C%A8443%E4%B8%8B%E9%9D%A2%E9%85%8D%E7%BD%AE%E6%98%A0%E5%B0%84%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">注意，你的后台服务记得在443下面配置映射，如下：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/09/hello-world/" title="nginx配置https访问"><img src="/assets/images/random/13.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="nginx配置https访问"/></a><div class="content"><a class="title" href="/2024/11/09/hello-world/" title="nginx配置https访问">nginx配置https访问</a><time datetime="2024-11-09T01:58:18.000Z" title="发表于 2024-11-09 09:58:18">2024-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/01/2024110110/" title="如何实现软路由功能"><img src="/assets/images/random/12.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="如何实现软路由功能"/></a><div class="content"><a class="title" href="/2024/11/01/2024110110/" title="如何实现软路由功能">如何实现软路由功能</a><time datetime="2024-11-01T02:38:35.000Z" title="发表于 2024-11-01 10:38:35">2024-11-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/01/2024110109/" title="反向ssh"><img src="/assets/images/random/11.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="反向ssh"/></a><div class="content"><a class="title" href="/2024/11/01/2024110109/" title="反向ssh">反向ssh</a><time datetime="2024-11-01T02:36:06.000Z" title="发表于 2024-11-01 10:36:06">2024-11-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/01/2024110108/" title="docker run的命令讲解"><img src="/assets/images/random/10.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="docker run的命令讲解"/></a><div class="content"><a class="title" href="/2024/11/01/2024110108/" title="docker run的命令讲解">docker run的命令讲解</a><time datetime="2024-11-01T02:30:23.000Z" title="发表于 2024-11-01 10:30:23">2024-11-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/01/2024110107/" title="css动画的属性及基础用法"><img src="/assets/images/random/23.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="css动画的属性及基础用法"/></a><div class="content"><a class="title" href="/2024/11/01/2024110107/" title="css动画的属性及基础用法">css动画的属性及基础用法</a><time datetime="2024-11-01T02:26:11.000Z" title="发表于 2024-11-01 10:26:11">2024-11-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 徐义杰</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'FPyTl02FszErPYkqNbtolkT6-gzGzoHsz',
+      appKey: 'oW7Cjwtkg7hh2iFyKogfjySI',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script><script src="/js/sakura.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="请输入需要搜索的内容" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1s');
+    arr[i].setAttribute('data-wow-delay', '700ms');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
