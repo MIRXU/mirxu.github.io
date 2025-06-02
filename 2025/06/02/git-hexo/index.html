@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>git-hexo | 小徐的博客</title><meta name="author" content="徐义杰"><meta name="copyright" content="徐义杰"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Hexo 作为基于 Node.js 的静态博客框架，其性能优化有一些特定的方法。以下是针对 Hexo 博客加载速度慢的常见原因及优化方案： 一、Hexo 自身配置优化 启用静态资源压缩Hexo 默认生成的文件未压缩，可通过插件优化：  安装插件： 12npm install hexo-neat --save  # 压缩 HTML&#x2F;CSS&#x2F;JSnpm install hexo-image-slim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git-hexo">
+<meta property="og:url" content="http://abc.xz.cn/2025/06/02/git-hexo/index.html">
+<meta property="og:site_name" content="小徐的博客">
+<meta property="og:description" content="Hexo 作为基于 Node.js 的静态博客框架，其性能优化有一些特定的方法。以下是针对 Hexo 博客加载速度慢的常见原因及优化方案： 一、Hexo 自身配置优化 启用静态资源压缩Hexo 默认生成的文件未压缩，可通过插件优化：  安装插件： 12npm install hexo-neat --save  # 压缩 HTML&#x2F;CSS&#x2F;JSnpm install hexo-image-slim">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://abc.xz.cn/assets/images/random/17.jpg">
+<meta property="article:published_time" content="2025-06-02T04:44:50.000Z">
+<meta property="article:modified_time" content="2025-06-02T04:46:29.622Z">
+<meta property="article:author" content="徐义杰">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://abc.xz.cn/assets/images/random/17.jpg"><link rel="shortcut icon" href="/assets/imgs/favicon.ico"><link rel="canonical" href="http://abc.xz.cn/2025/06/02/git-hexo/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'git-hexo',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/cursor.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background: [object Object];"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="onerror=null;src='/assets/images/random/9.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-code"></i><span> 学习资源</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/code-encryption/"><i class="fa-fw fas fa-code"></i><span> 代码加密</span></a></li><li><a class="site-page child" href="/sld/"><i class="fa-fw fas fa-code"></i><span> SLD</span></a></li><li><a class="site-page child" href="/learning/"><i class="fa-fw fas fa-code"></i><span> 学习资料</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/totif/"><i class="fa-fw fas fa-toolbox"></i><span> 视频砖TIF</span></a></li><li><a class="site-page child" href="/starryFrp/"><i class="fa-fw fas fa-toolbox"></i><span> StarryFrp</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/record-life/"><i class="fa-fw fas fa-archive"></i><span> 记录生活</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fa-solid fa-image"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/assets/images/random/17.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">小徐的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">git-hexo</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-code"></i><span> 学习资源</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/code-encryption/"><i class="fa-fw fas fa-code"></i><span> 代码加密</span></a></li><li><a class="site-page child" href="/sld/"><i class="fa-fw fas fa-code"></i><span> SLD</span></a></li><li><a class="site-page child" href="/learning/"><i class="fa-fw fas fa-code"></i><span> 学习资料</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/totif/"><i class="fa-fw fas fa-toolbox"></i><span> 视频砖TIF</span></a></li><li><a class="site-page child" href="/starryFrp/"><i class="fa-fw fas fa-toolbox"></i><span> StarryFrp</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/record-life/"><i class="fa-fw fas fa-archive"></i><span> 记录生活</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fa-solid fa-image"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comment"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">git-hexo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-02T04:44:50.000Z" title="发表于 2025-06-02 12:44:50">2025-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-02T04:46:29.622Z" title="更新于 2025-06-02 12:46:29">2025-06-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Hexo 作为基于 Node.js 的静态博客框架，其性能优化有一些特定的方法。以下是针对 Hexo 博客加载速度慢的常见原因及优化方案：</p>
+<h1 id="一、Hexo-自身配置优化"><a href="#一、Hexo-自身配置优化" class="headerlink" title="一、Hexo 自身配置优化"></a>一、Hexo 自身配置优化</h1><ol>
+<li>启用静态资源压缩<br>Hexo 默认生成的文件未压缩，可通过插件优化：</li>
+</ol>
+<p>安装插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-neat --save  <span class="comment"># 压缩 HTML/CSS/JS</span></span><br><span class="line">npm install hexo-image-slim --save  <span class="comment"># 图片压缩</span></span><br></pre></td></tr></table></figure>
+<p>配置 _config.yml：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hexo-neat 配置</span></span><br><span class="line"></span><br><span class="line"><span class="attr">neat_enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">neat_html:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">exclude:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">neat_css:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">exclude:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;*.min.css&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">neat_js:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">mangle:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">output:</span></span><br><span class="line">  <span class="attr">compress:</span></span><br><span class="line">  <span class="attr">exclude:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&#x27;*.min.js&#x27;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>优化生成速度与文件体积<br>减少不必要的生成：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">skip_render:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;*.pdf&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;*.zip&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;*.mp4&#x27;</span>  <span class="comment"># 跳过大型文件生成</span></span><br></pre></td></tr></table></figure>
+禁用未使用的功能：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭不需要的功能（如 RSS、sitemap）</span></span><br><span class="line"></span><br><span class="line"><span class="attr">feed:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="二、主题与插件优化"><a href="#二、主题与插件优化" class="headerlink" title="二、主题与插件优化"></a>二、主题与插件优化</h1><ol>
+<li>更换轻量级主题<br>部分 Hexo 主题（如 NexT、Butterfly）自带性能优化，可选择以下配置：</li>
+</ol>
+<p>启用 CDN：在主题配置中使用第三方 CDN 加载资源（如 Google Fonts、Font Awesome）。<br>关闭不必要的功能：如动画效果、评论系统的实时预览等。<br>2. 精简插件<br>移除未使用的插件，仅保留必要的功能：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-generator-feed  <span class="comment"># 如不需要 RSS</span></span><br><span class="line">npm uninstall hexo-generator-sitemap  <span class="comment"># 如不需要 sitemap</span></span><br></pre></td></tr></table></figure>
+<h1 id="三、静态资源优化"><a href="#三、静态资源优化" class="headerlink" title="三、静态资源优化"></a>三、静态资源优化</h1><ol>
+<li>图片处理<br>压缩图片：使用工具（如 ImageOptim、TinyPNG）手动压缩，或通过 hexo-image-slim 自动处理。<br>使用 WebP 格式：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">image_slim:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">img_dir:</span> <span class="string">images</span>  <span class="comment"># 图片目录</span></span><br><span class="line">  <span class="attr">convert_to_webp:</span> <span class="literal">true</span>  <span class="comment"># 转换为 WebP</span></span><br></pre></td></tr></table></figure>
+懒加载图片：添加插件 hexo-lazyload-image：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-lazyload-image --save</span><br></pre></td></tr></table></figure></li>
+<li>CSS&#x2F;JS 优化<br>合并与压缩：使用 hexo-neat 自动合并和压缩 CSS&#x2F;JS 文件。<br>使用 CDN：将 jQuery、Bootstrap 等库替换为 CDN 链接，减少本地文件体积。</li>
+</ol>
+<h1 id="四、部署与缓存策略"><a href="#四、部署与缓存策略" class="headerlink" title="四、部署与缓存策略"></a>四、部署与缓存策略</h1><ol>
+<li>增量部署<br>使用 hexo-deployer-git 时，仅推送变更的文件：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy  <span class="comment"># 生成并部署</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>启用 GitHub Pages 缓存<br>在 source 目录下创建 .nojekyll 文件，避免 GitHub Pages 重新构建：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> <span class="built_in">source</span>/.nojekyll</span><br></pre></td></tr></table></figure>
+添加缓存头信息：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">meta_generator:</span> <span class="literal">false</span>  <span class="comment"># 移除默认的&lt;meta name=&quot;generator&quot;&gt;标签</span></span><br></pre></td></tr></table></figure>
+五、高级优化</li>
+<li>使用云函数中转（针对国内用户）<br>将 GitHub Pages 内容通过 Vercel&#x2F;Netlify 等平台中转，利用其全球 CDN 节点：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Vercel 配置文件 vercel.json 中添加</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;rewrites&quot;</span>: [</span><br><span class="line">    &#123; <span class="string">&quot;source&quot;</span>: <span class="string">&quot;/(.*)&quot;</span>, <span class="string">&quot;destination&quot;</span>: <span class="string">&quot;https://your-github-pages-url.github.io/<span class="variable">$1</span>&quot;</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>预加载关键资源<br>在主题的模板文件中添加：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">预览</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preload&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/css/main.css&quot;</span> <span class="attr">as</span>=<span class="string">&quot;style&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;preload&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/js/main.js&quot;</span> <span class="attr">as</span>=<span class="string">&quot;script&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="六、性能测试与监控"><a href="#六、性能测试与监控" class="headerlink" title="六、性能测试与监控"></a>六、性能测试与监控</h1><ol>
+<li>使用 Lighthouse 检测<br>在 Chrome 浏览器中按 F12 → Audits → 运行 Lighthouse，重点关注：</li>
+</ol>
+<p>First Contentful Paint (FCP)：首屏渲染时间<br>Largest Contentful Paint (LCP)：最大内容渲染时间<br>Total Blocking Time (TBT)：主线程阻塞时间<br>2. 对比测试<br>使用 WebPageTest 对比你的博客与同类 Hexo 博客的加载速度。<br>检查 Network 面板，找出加载最慢的资源（如大图片、第三方脚本）。<br>七、常见问题排查</p>
+<ol>
+<li>主题配置冲突<br>某些主题的默认配置可能导致性能问题，检查主题文档中的优化建议。</li>
+<li>本地环境与线上差异<br>本地预览 (hexo server) 的速度不代表线上性能，务必部署后测试。</li>
+<li>GitHub Actions 构建超时<br>若使用 GitHub Actions 自动部署，可在 .github&#x2F;workflows 中增加内存配置：<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">0</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;16&#x27;</span></span><br><span class="line">          <span class="attr">cache:</span> <span class="string">&#x27;npm&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>通过以上优化，Hexo 博客在 GitHub Pages 上的加载速度通常能提升 50% 以上。如果问题仍存在，建议提供具体的博客链接或 Lighthouse 报告，以便进一步分析。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://abc.xz.cn">徐义杰</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://abc.xz.cn/2025/06/02/git-hexo/">http://abc.xz.cn/2025/06/02/git-hexo/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://abc.xz.cn" target="_blank">小徐的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a></div><div class="post-share"><div class="social-share" data-image="/assets/images/random/17.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/06/02/xposed/" title="xposed"><img class="cover" src="/assets/images/random/4.jpg" onerror="onerror=null;src='/assets/images/random/9.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">xposed</div></div><div class="info-2"><div class="info-item-1">Android手机端滴滴抢单外挂示例（技术研究用途）以下是一个更接近真实场景的Android实现框架，展示外挂可能的核心模块（仅供学习安全防御技术，请勿用于非法用途）。 1. 基础框架（Android + Xposed）外挂通常以Xposed模块或Magisk模块的形式存在，通过Hook滴滴司机APP的关键函数实现自动化。示例代码（Xposed模块） 1234567891011121314151617181920212223242526272829303132// 模块入口：Hook滴滴APP的订单处理逻辑public class DiDiGrabber implements IXposedHookLoadPackage &#123;    @Override    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable &#123;        if...</div></div></div></a><a class="pagination-related" href="/2025/06/02/vite-plus/" title="vite-plus"><img class="cover" src="/assets/images/random/15.jpg" onerror="onerror=null;src='/assets/images/random/9.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">vite-plus</div></div><div class="info-2"><div class="info-item-1">vite常用插件总结rollup-plugin-remove-others-console这个插件是我自己开发的，在生产环境中可以根据 git 作者信息移除非自己的 console 语句，无任何配置负担，优化开发体验～安装 1npm install rollup-plugin-remove-others-console --save-dev 配置 123456import &#123; defineConfig &#125; from &#x27;vite&#x27;;import removeConsole from &#x27;rollup-plugin-remove-others-console&#x27;;export default defineConfig(&#123;  plugins: [removeConsole()],&#125;); vite-tsconfig-paths安装 1npm install vite-tsconfig-paths --save-dev 配置 123456import &#123; defineConfig &#125; from...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="avatar"/></div><div class="author-info-name">徐义杰</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://mirxu.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这是我的技术小站，用 Hexo 搭建。这里是 IT 知识的富集地，有编程语言、算法、系统、网络和安全等方面的内容，是 IT 爱好者和专业人士的好去处。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Hexo-%E8%87%AA%E8%BA%AB%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">一、Hexo 自身配置优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BB%E9%A2%98%E4%B8%8E%E6%8F%92%E4%BB%B6%E4%BC%98%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">二、主题与插件优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E4%BC%98%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">三、静态资源优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5"><span class="toc-number">4.</span> <span class="toc-text">四、部署与缓存策略</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B8%8E%E7%9B%91%E6%8E%A7"><span class="toc-number">5.</span> <span class="toc-text">六、性能测试与监控</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/02/xposed/" title="xposed"><img src="/assets/images/random/4.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="xposed"/></a><div class="content"><a class="title" href="/2025/06/02/xposed/" title="xposed">xposed</a><time datetime="2025-06-02T04:45:05.000Z" title="发表于 2025-06-02 12:45:05">2025-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/02/git-hexo/" title="git-hexo"><img src="/assets/images/random/17.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="git-hexo"/></a><div class="content"><a class="title" href="/2025/06/02/git-hexo/" title="git-hexo">git-hexo</a><time datetime="2025-06-02T04:44:50.000Z" title="发表于 2025-06-02 12:44:50">2025-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/02/vite-plus/" title="vite-plus"><img src="/assets/images/random/15.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="vite-plus"/></a><div class="content"><a class="title" href="/2025/06/02/vite-plus/" title="vite-plus">vite-plus</a><time datetime="2025-06-02T04:44:09.000Z" title="发表于 2025-06-02 12:44:09">2025-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/20/2024112103/" title="go语言代码如何传入npm包"><img src="/assets/images/random/12.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="go语言代码如何传入npm包"/></a><div class="content"><a class="title" href="/2024/11/20/2024112103/" title="go语言代码如何传入npm包">go语言代码如何传入npm包</a><time datetime="2024-11-20T01:19:36.000Z" title="发表于 2024-11-20 09:19:36">2024-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/20/2024112102/" title="ffmpeg的一些简单用法"><img src="/assets/images/random/34.jpg" onerror="this.onerror=null;this.src='/assets/images/random/9.jpg'" alt="ffmpeg的一些简单用法"/></a><div class="content"><a class="title" href="/2024/11/20/2024112102/" title="ffmpeg的一些简单用法">ffmpeg的一些简单用法</a><time datetime="2024-11-20T01:18:16.000Z" title="发表于 2024-11-20 09:18:16">2024-11-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 徐义杰</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'FPyTl02FszErPYkqNbtolkT6-gzGzoHsz',
+      appKey: 'oW7Cjwtkg7hh2iFyKogfjySI',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script><script src="/js/sakura.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="请输入需要搜索的内容" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1s');
+    arr[i].setAttribute('data-wow-delay', '700ms');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
